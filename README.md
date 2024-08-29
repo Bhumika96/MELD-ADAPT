@@ -1,7 +1,7 @@
 
 Prerequisites
 --------------------
-version: MELD-0.6.1
+version: [MELD-0.6.1](https://github.com/maccallumlab/meld)
 
 Fot the pupose of the tutorial, we have explained how to run MELD-Adapt as well as MELD. We have taken example of folding of Protein G (PDB ID: 3GB1) starting from the sequence of the protein.
 
