@@ -201,7 +201,7 @@ def setup_system():
     n_res = len(sequence.split())
 
     # build the system
-    p = meld.AmberSubSystemFromPdbFile('TEMPLATES/peptide_min.pdb')
+    p = meld.AmberSubSystemFromPdbFile('TEMPLATES/minimized_protein.pdb')
     build_options = meld.AmberOptions(
       forcefield="ff14sbside",
       implicit_solvent_model = 'gbNeck2',
