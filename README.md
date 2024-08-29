@@ -39,7 +39,7 @@ from meld.system import param_sampling
     s.restraints.add_selectively_active_collection(dists, param_hydrophobic)
 ```
 
-Line 4: Creates a prior that favors higher values *$ -1K_B T $* with energy contribution for each unit of increase in the parameter.
+Line 4: Creates a prior that favors higher values *$\-1K_B T$* with energy contribution for each unit of increase in the parameter.
 
 Line 5: Creates a sampler with a minimum value of 1 and a maximum value of length of total dists *(calculated in line 3)*, both inclusive. It uses a step size of 1, so that random moves are attemped from the current value.
 
