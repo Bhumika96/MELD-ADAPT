@@ -18,15 +18,46 @@ each replica at different temperature and hamiltonian (force constant/ restraint
 
 ```minimized_protein.pdb``` in the /TEMPLATES directory #starting structure
 
+**Setting the choices for the simulations**
+
+We can set the choice of forcefield ```forcefield="ff14sbside"```, solvent model ```implicit_solvent_model = 'gbNeck2'```, 
+time step ```use_big_timestep = True``` *(here, 3.5fs)*.
+
+Since Hamiltonian, temperature Replica exchange Molecular Dynamics (H,T-REMD) is employed. the temperature can also be varied along the replica ladder. 
+
+Temperature ```s.temperature_scaler = meld.GeometricTemperatureScaler(0, 0.3, 300.*u.kelvin, 450.*u.kelvin)```
+
+```
+def setup_system():
+    
+    # load the sequence
+    sequence = parse.get_sequence_from_AA1(filename='sequence.dat')
+    n_res = len(sequence.split())
+
+    # build the system
+    p = meld.AmberSubSystemFromPdbFile('TEMPLATES/peptide_min.pdb')
+    build_options = meld.AmberOptions(
+      forcefield="ff14sbside",
+      implicit_solvent_model = 'gbNeck2',
+      use_big_timestep = True,
+      cutoff = 1.8*u.nanometers,
+      remove_com = False,
+      #use_amap = False,
+      enable_amap = False,
+      amap_beta_bias = 1.0,
+    )
+
+
+    builder = meld.AmberSystemBuilder(build_options)
+    s = builder.build_system([p]).finalize()
+    #s.temperature_scaler = meld.ConstantTemperatureScaler(300.0 * u.kelvin)
+    s.temperature_scaler = meld.GeometricTemperatureScaler(0, 0.3, 300.*u.kelvin, 450.*u.kelvin)
+```
+
 **How to set up reward value ($\lambda$) and initial prior**
 
 In the code the reward is given by u0. As shown in the given snippet, the reward (u0) is 1.0.
 For sampling of hydrophobic contact based restraints: the initial prior is 1.2.
-
-
-prior = param_sampling.DiscreteExponentialPrior(k=1.0)
-sampler = param_sampling.DiscreteSampler(50, 100, 5)
-param = system.param_sampler.add_discrete_parameter("param", 75, prior, sampler)
 
 ```
 from meld.system import param_sampling
@@ -50,7 +81,7 @@ Here:
 The reward (u0) is 1.0.
 For sampling of strand pair contact based restraints: the initial prior is 0.45.
 ```
-    #creates parameter sampling for strand pairing
+#creates parameter sampling for strand pairing
     dists = get_dist_restraints_strand_pair('strand_pair.dat', s, scaler, ramp, seq)
     prior_strand = param_sampling.ScaledExponentialDiscretePrior(**u0=1.0**, temperature_scaler=s.temperature_scaler, scaler=scaler)
     sampler_strand = param_sampling.DiscreteSampler(int(1), int(1.00 * len(dists)), 1)
