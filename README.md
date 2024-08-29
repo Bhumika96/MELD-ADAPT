@@ -127,7 +127,7 @@ Similarly, we can fix the strand pair contacts.
     #s.restraints.add_selectively_active_collection(dists, param_strand)
     s.restraints.add_selectively_active_collection(dists, int(0.45*active))
 ```
-For more detailed understanding of MELD-Adapt.
+For more detailed understanding of MELD-Adapt
 -----------------------------------------------------------------------
 1) [Bayesian Sampling of Parameters](http://meldmd.org/explain/param_sampling.html#parameter-sampling-background)
 2) [How to use parameter sampling](http://meldmd.org/how_to/parameter_sampling.html)
