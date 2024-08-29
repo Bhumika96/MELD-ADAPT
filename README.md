@@ -23,7 +23,7 @@ each replica at different temperature and hamiltonian (force constant/ restraint
 We can set the choice of forcefield ```forcefield="ff14sbside"```, solvent model ```implicit_solvent_model = 'gbNeck2'```, 
 time step ```use_big_timestep = True``` *(here, 3.5fs)*.
 
-Since Hamiltonian, temperature Replica exchange Molecular Dynamics (H,T-REMD) is employed. The temperature can also be varied along the replica ladder. 
+Since Hamiltonian, Temperature Replica Exchange Molecular Dynamics (H,T-REMD) is employed. The temperature can also be varied along the replica ladder. The Hamiltonian for restraints varies from parameter to parameter. 
 
 Temperature ```s.temperature_scaler = meld.GeometricTemperatureScaler(0, 0.3, 300.*u.kelvin, 450.*u.kelvin)``` *(Here, temperature goes from 300K-450K)*
 
