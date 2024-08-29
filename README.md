@@ -3,6 +3,8 @@ Prerequisites
 --------------------
 version: MELD-0.6.1
 
+Fot the pupose of the tutorial, we have explained how to run MELD-Adapt as well as MELD. We have taken example of folding of Protein G (PDB ID: 3GB1) starting from the sequence of the protein.
+
 Setting the setup script for MELD-Adapt
 -----------------------------------------------
 
@@ -115,7 +117,16 @@ In case the user wants to fix the amount of data to trust throughout the simulat
     #s.restraints.add_selectively_active_collection(dists, param_hydrophobic)
     s.restraints.add_selectively_active_collection(dists, int(1.2 * no_hy_res))   
 ```
-
+Similarly, we can fix the strand pair contacts.
+```
+#fixed restraints based on strand pairing
+    dists = get_dist_restraints_strand_pair('strand_pair.dat', s, scaler, ramp, seq)
+    #prior_strand = param_sampling.ScaledExponentialDiscretePrior(u0=1.0, temperature_scaler=s.temperature_scaler, scaler=scaler)
+    #sampler_strand = param_sampling.DiscreteSampler(int(1), int(1.00 * len(dists)), 1)
+    #param_strand = s.param_sampler.add_discrete_parameter("param_SP", int(0.45*active), prior_strand, sampler_strand)
+    #s.restraints.add_selectively_active_collection(dists, param_strand)
+    s.restraints.add_selectively_active_collection(dists, int(0.45*active))
+```
 For more detailed understanding of MELD-Adapt. Refer to the following:
 -----------------------------------------------------------------------
 1) [Bayesian Sampling of Parameters](http://meldmd.org/explain/param_sampling.html#parameter-sampling-background)
