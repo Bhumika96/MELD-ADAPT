@@ -18,7 +18,7 @@ each replica at different temperature and hamiltonian (force constant/ restraint
 
 ```ss.dat```       : the secondary structure predictions of the protein. In the given file *H* represents Helix, *E* represents strand, *.* represents coil.
 
-```minimized_protein.pdb``` in the /TEMPLATES directory #starting structure
+```minimized_protein.pdb``` in the /TEMPLATES directory #starting structure from sequence after minimizing in AMBER.
 
 **Setting the choices for the simulations**
 
