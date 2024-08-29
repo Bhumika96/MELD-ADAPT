@@ -117,6 +117,33 @@ def create_hydrophobes(s,group_1=np.array([]),group_2=np.array([]),CO=True):
                     hy_rest.write('{} {} {} {}\n'.format(i,a_i, j, a_j))
             hy_rest.write('\n')
 
+def generate_strand_pairs(s,sse,subset=np.array([]),CO=True):
+    f=open('strand_pair.dat','w')
+    n_res = s.residue_numbers[-1]
+    subset = subset if subset.size else np.array(list(range(n_res)))+1
+    strand_pair = []
+    for i in range(len(sse)):
+        start_i,end_i = sse[i]
+        for j in range(i+1,len(sse)):
+            start_j,end_j = sse[j]
+ 
+            for res_i in range(start_i,end_i+1):
+                for res_j in range(start_j,end_j+1):
+                    if res_i in subset or res_j in subset:
+                        #print(res_i,res_j)
+                        f.write('{} {} {} {}\n'.format(res_i, 'N', res_j, 'O'))
+                        #f.write('\n')
+                        f.write('{} {} {} {}\n'.format(res_i, 'O', res_j, 'N'))
+                        f.write('\n')
+                        #g = []
+                        #make_pairNO(g,s,res_i,res_j,scaler,CO)
+                        #strand_pair.append(s.restraints.create_restraint_group(g,1))
+                        #g = []
+                        #make_pairON(g,s,res_i,res_j,scaler,CO)
+                        #strand_pair.append(s.restraints.create_restraint_group(g,1))
+    #all_rest = len(strand_pair)
+    #active = int(active * active_per_cent)
+    #print(("strand_pairs:", all_rest,active))
 
 def get_dist_restraints_hydrophobe(filename, s, scaler, ramp, seq):
     dists = []
@@ -142,6 +169,30 @@ def get_dist_restraints_hydrophobe(filename, s, scaler, ramp, seq):
             rest_group.append(rest)
     return dists
 
+def get_dist_restraints_strand_pair(filename, s, scaler, ramp, seq):
+    dists = []
+    rest_group = []
+    lines = open(filename).read().splitlines()
+    lines = [line.strip() for line in lines]
+    for line in lines:
+        if not line:
+            dists.append(s.restraints.create_restraint_group(rest_group, 1))
+            rest_group = []
+        else:
+            cols = line.split()
+            i = int(cols[0])-1
+            name_i = cols[1]
+            j = int(cols[2])-1
+            name_j = cols[3]
+            #
+
+            rest = s.restraints.create_restraint('distance', scaler, ramp,
+                                                 r1=0.0*u.nanometer, r2=0.0*u.nanometer, r3=0.35*u.nanometer, r4=0.55*u.nanometer,
+                                                 k=250*u.kilojoule_per_mole/u.nanometer **2,
+                                                 atom1=s.index.atom(i,name_i, expected_resname=seq[i][-3:]),
+                                                 atom2=s.index.atom(j,name_j, expected_resname=seq[j][-3:]))
+            rest_group.append(rest)
+    return dists
 
 def setup_system():
     
