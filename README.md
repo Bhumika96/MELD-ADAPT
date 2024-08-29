@@ -1,9 +1,9 @@
 
-Step0. Prerequisites
+Prerequisites
 --------------------
 version: MELD-0.6.1
 
-Step1: Setting the setup script for MELD-Adapt
+Setting the setup script for MELD-Adapt
 -----------------------------------------------
 
 ```setup_meld_adapt.py``` is a python script which is creates the platform for the simulation using MELD-Adapt.
@@ -99,6 +99,22 @@ After each round of molecular dynamics steps, the parameters are updated using a
         min_mc = sched,
         param_mcmc_steps=200
     )
+```
+
+Setting the setup script for MELD
+----------------------------------
+
+In case wants to fix the amount of data to trust throughout the simulations. They can run MELD as follows:
+
+```
+#fixed restraints based on hydrophobic contacts
+    dists = get_dist_restraints_hydrophobe('hydrophobe.dat', s, scaler, ramp, seq)
+    #prior_hydrophobic = param_sampling.ScaledExponentialDiscretePrior(u0=1.0, temperature_scaler=s.temperature_scaler, scaler=scaler)
+    #sampler_hydrophobic = param_sampling.DiscreteSampler(int(1), int(1.00 * len(dists)), 1)
+    #param_hydrophobic = s.param_sampler.add_discrete_parameter("param_HP", int(1.2 * no_hy_res), prior_hydrophobic, sampler_hydrophobic)
+    #s.restraints.add_selectively_active_collection(dists, param_hydrophobic)
+    s.restraints.add_selectively_active_collection(dists, int(1.2 * no_hy_res))
+    
 ```
 
 For more detailed understanding of MELD-Adapt. Refer to the following:
