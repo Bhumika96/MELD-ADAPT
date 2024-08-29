@@ -106,7 +106,7 @@ After each round of molecular dynamics steps, the parameters are updated using a
 Setting the setup script for MELD
 ----------------------------------
 
-In case the user wants to fix the amount of data to trust throughout the simulations. ```setup_meld.py``` is a python script which creates the platform for the simulation using MELD. The following should be made to fix the amount of hydrophobe contacts as follows:
+In case the user wants to fix the amount of data to trust throughout the simulations. ```setup_meld.py``` is a python script which creates the platform for the simulation using MELD. The following should be made to fix the amount of hydrophobe contacts as shown in the code snippet. *Note we no longer need to define prior_hydrophobic, sampler_hydrophobic, param_hydrophobic.*
 
 ```
 #fixed restraints based on hydrophobic contacts
