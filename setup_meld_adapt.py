@@ -217,7 +217,9 @@ def setup_system():
     sampler_hydrophobic = param_sampling.DiscreteSampler(int(1), int(1.00 * len(dists)), 1)
     param_hydrophobic = s.param_sampler.add_discrete_parameter("param_HP", int(1.2 * no_hy_res), prior_hydrophobic, sampler_hydrophobic)
     s.restraints.add_selectively_active_collection(dists, param_hydrophobic)
-    
+
+    sse,active = make_ss_groups(subset=subset1)
+    generate_strand_pairs(s,sse,subset=subset1,CO=False)
     
     #creates parameter sampling for strand pairing
     dists = get_dist_restraints_strand_pair('strand_pair.dat', s, scaler, ramp, seq)
