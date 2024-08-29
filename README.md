@@ -89,7 +89,22 @@ For sampling of strand pair contact based restraints: the initial prior is 0.45.
     s.restraints.add_selectively_active_collection(dists, param_strand)
 ```
 
+After each round of molecular dynamics steps, the parameters are updated using a series of Monte Carlo trials. The number of trials is controlled by the ```param_mcmc_steps``` option of the RunOption object.
 
+```
+ # create the options
+    options = meld.RunOptions(
+        timesteps = 14286,
+        minimize_steps = 20000,
+        min_mc = sched,
+        param_mcmc_steps=200
+    )
+```
+
+For more detailed understanding of MELD-Adapt. Refer to the following:
+-----------------------------------------------------------------------
+1) [Bayesian Sampling of Parameters](http://meldmd.org/explain/param_sampling.html#parameter-sampling-background)
+2) [How to use parameter sampling](http://meldmd.org/how_to/parameter_sampling.html) 
 
 
 
