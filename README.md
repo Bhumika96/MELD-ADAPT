@@ -6,7 +6,7 @@ version: MELD-0.6.1
 Setting the setup script for MELD-Adapt
 -----------------------------------------------
 
-```setup_meld_adapt.py``` is a python script which is creates the platform for the simulation using MELD-Adapt.
+```setup_meld_adapt.py``` is a python script which creates the platform for the simulation using MELD-Adapt.
 This script creates the restraint files ```hydrophobe.dat``` and ```strand_pair.dat``` as well as generate the initial states for 
 each replica at different temperature and hamiltonian (force constant/ restraint strength). The same script is used to input the values of the hyperparameters: reward (u0) and initial prior (starting belief). Finally launch OpenMM jobs associated with replica exchange protocol.
 
@@ -104,7 +104,7 @@ After each round of molecular dynamics steps, the parameters are updated using a
 Setting the setup script for MELD
 ----------------------------------
 
-In case wants to fix the amount of data to trust throughout the simulations. They can run MELD as follows:
+In case wants to fix the amount of data to trust throughout the simulations. ```setup_meld.py``` is a python script which creates the platform for the simulation using MELD. The following should be made to fix the amount of hydrophobe contacts as follows:
 
 ```
 #fixed restraints based on hydrophobic contacts
@@ -113,8 +113,7 @@ In case wants to fix the amount of data to trust throughout the simulations. The
     #sampler_hydrophobic = param_sampling.DiscreteSampler(int(1), int(1.00 * len(dists)), 1)
     #param_hydrophobic = s.param_sampler.add_discrete_parameter("param_HP", int(1.2 * no_hy_res), prior_hydrophobic, sampler_hydrophobic)
     #s.restraints.add_selectively_active_collection(dists, param_hydrophobic)
-    s.restraints.add_selectively_active_collection(dists, int(1.2 * no_hy_res))
-    
+    s.restraints.add_selectively_active_collection(dists, int(1.2 * no_hy_res))   
 ```
 
 For more detailed understanding of MELD-Adapt. Refer to the following:
