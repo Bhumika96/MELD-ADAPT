@@ -64,7 +64,7 @@ def visualize_multiple_parameters(files):
     #fig.legend(all_handles, all_labels, loc='upper right', bbox_to_anchor=(0.98, 1), fontsize=20, ncol=1)
 
     plt.tight_layout()
-    plt.savefig('enforced_restraints_per_replica_hydrophobe.png', dpi=320)
+    plt.savefig('enforced_restraints_per_replica_strand.png', dpi=320)
     plt.show()
 
 # Paths to the 6 files you want to plot
