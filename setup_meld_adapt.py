@@ -217,7 +217,7 @@ def setup_system():
     builder = meld.AmberSystemBuilder(build_options)
     s = builder.build_system([p]).finalize()
     #s.temperature_scaler = meld.ConstantTemperatureScaler(300.0 * u.kelvin)
-    s.temperature_scaler = meld.GeometricTemperatureScaler(0, 0.3, 300.*u.kelvin, 450.*u.kelvin)
+    s.temperature_scaler = meld.GeometricTemperatureScaler(0, 0.3, 300.*u.kelvin, 550.*u.kelvin)
 
 
     ramp = s.restraints.create_scaler('nonlinear_ramp', start_time=1, end_time=200,
