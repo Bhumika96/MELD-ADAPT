@@ -271,7 +271,7 @@ def setup_system():
     #prior_hydrophobic = param_sampling.ScaledExponentialDiscretePrior(u0=1.0, temperature_scaler=s.temperature_scaler, scaler=scaler)
     #sampler_hydrophobic = param_sampling.DiscreteSampler(int(1), int(1.00 * len(dists)), 1)
     #param_hydrophobic = s.param_sampler.add_discrete_parameter("param_HP", int(1.2 * no_hy_res), prior_hydrophobic, sampler_hydrophobic)
-    s.restraints.add_selectively_active_collection(dists, int(1.2 * no_hy_res))
+    s.restraints.add_selectively_active_collection(dists, int(2.4 * no_hy_res))
     #s.restraints.add_selectively_active_collection(dists, param_hydrophobic)
     
     
