@@ -136,9 +136,9 @@ use ```extract_trajectories_walkers.sh``` to extract trajectories and walkers fo
 
 For more detailed understanding of MELD-Adapt
 -----------------------------------------------------------------------
-1) [Bayesian Sampling of Parameters](http://meldmd.org/explain/param_sampling.html#parameter-sampling-background)
-2) [How to use parameter sampling](http://meldmd.org/how_to/parameter_sampling.html)
-3) MELD-Adapt: On-the-Fly Belief Updating in Integrative Molecular Dynamics [link](https://doi.org/10.1021/acs.jctc.4c00690)
+1) MELD-Adapt: On-the-Fly Belief Updating in Integrative Molecular Dynamics [link](https://doi.org/10.1021/acs.jctc.4c00690)
+2) [Bayesian Sampling of Parameters](http://meldmd.org/explain/param_sampling.html#parameter-sampling-background)
+3) [How to use parameter sampling](http://meldmd.org/how_to/parameter_sampling.html)
 
 
 
