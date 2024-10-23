@@ -138,7 +138,7 @@ For more detailed understanding of MELD-Adapt
 -----------------------------------------------------------------------
 1) [Bayesian Sampling of Parameters](http://meldmd.org/explain/param_sampling.html#parameter-sampling-background)
 2) [How to use parameter sampling](http://meldmd.org/how_to/parameter_sampling.html)
-3) MELD-Adapt: On-the-Fly Belief Updating in Integrative Molecular Dynamics [link](https://www.biorxiv.org/content/10.1101/2024.05.21.595263v1)
+3) MELD-Adapt: On-the-Fly Belief Updating in Integrative Molecular Dynamics [link](https://doi.org/10.1021/acs.jctc.4c00690)
 
 
 
