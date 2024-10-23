@@ -12,6 +12,11 @@
 #SBATCH --array=0-29
 #SBATCH --qos=alberto.perezant-b
 
+module purge
+deactivate
+conda deactivate
+source /home/liweichang/.load_OpenMMv8_cuda12
+
 b=`perl -e 'printf("%02i", $ARGV[0]);' ${SLURM_ARRAY_TASK_ID}`
 # to extract walkers
 extract_trajectory follow_dcd --replica ${SLURM_ARRAY_TASK_ID} walkers/follow.$b.dcd
